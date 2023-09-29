@@ -75,3 +75,15 @@ class TicTacToe():
             if all([s == letter for s in diagonal2]):
                 return True
         return False
+
+    # tells if there's any more empty squares on the board
+    def empty_squares(self):
+        return ' ' in self.board
+    
+    # counts the number of empty squares
+    def num_empty_squares(self):
+        return self.board.count(' ')
+    
+    # gets the numerical value of the spaces that are still empty
+    def avaliable_moves(self):
+        return [i for i, x in enumerate(self.board) if x == " "]
