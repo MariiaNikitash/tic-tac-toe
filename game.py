@@ -89,6 +89,8 @@ class TicTacToe():
         return [i for i, x in enumerate(self.board) if x == " "]
     
 
+
+
     def play(game, x_player, o_player, print_game=True):
 
         if print_game:
