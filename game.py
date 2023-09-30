@@ -1,6 +1,8 @@
+
 import math
 import time
-from player import HumanPlayer, RandomComputerPlayer, SmartComputorPlayer 
+from player import HumanPlayer, RandomComputerPlayer, SmartComputerPlayer
+
 
 class TicTacToe():
     # func to initialize the board n a winner which is set to None
@@ -12,24 +14,23 @@ class TicTacToe():
     # a func to return a board with 9 spaces
     def make_board():
         return [' ' for _ in range(9)]
-    
 
     def print_board(self):
         # !for visual purposes only
         # going through 3 rows and just printing those 3 rows
-        for row in [self.board[i * 3: (i + 1) * 3 ] for i in range(3)]:
+        for row in [self.board[i*3:(i+1) * 3] for i in range(3)]:
             print('| ' + ' | '.join(row) + ' |')
 
-
     @staticmethod
-    # assigns the value 0 - 8 to every single space on the board
-    # 0 | 1 | 2 
-    # 3 | 4 | 5 
-    # 6 | 7 | 8 
     def print_board_nums():
-        number_board = [[str(i) for i in range (j * 3, (j + 1)* 3)] for j in range(3)]
+        # assigns the value 0 - 8 to every single space on the board
+        # 0 | 1 | 2 
+        # 3 | 4 | 5 
+        # 6 | 7 | 8 
+        number_board = [[str(i) for i in range(j*3, (j+1)*3)] for j in range(3)]
         for row in number_board:
-            print(' | '  + ' | '.join(row) + ' |')
+            print('| ' + ' | '.join(row) + ' |')
+
 
     # this func is taking a square(represents which space the user wants to go, num 0-8) 
     # and a letter X or O
@@ -44,6 +45,7 @@ class TicTacToe():
                 self.current_winner = letter
             return True
         return False
+
 
     # basically a func to check if a move made me a W or no
     def winner(self, square, letter):
@@ -79,22 +81,20 @@ class TicTacToe():
     # tells if there's any more empty squares on the board
     def empty_squares(self):
         return ' ' in self.board
-    
+
     # counts the number of empty squares
     def num_empty_squares(self):
         return self.board.count(' ')
-    
+
     # gets the numerical value of the spaces that are still empty
-    def avaliable_moves(self):
+    def available_moves(self):
         return [i for i, x in enumerate(self.board) if x == " "]
-    
 
 
+def play(game, x_player, o_player, print_game=True):
 
-    def play(game, x_player, o_player, print_game=True):
-
-        if print_game:
-            game.print_board_nums()
+    if print_game:
+        game.print_board_nums()
 
     letter = 'X'
     while game.empty_squares():
@@ -122,5 +122,8 @@ class TicTacToe():
 
 
 
-
-    
+if __name__ == '__main__':
+    x_player = SmartComputerPlayer('X')
+    o_player = HumanPlayer('O')
+    t = TicTacToe()
+    play(t, x_player, o_player, print_game=True)
